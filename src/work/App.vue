@@ -1,9 +1,27 @@
 <template>
   <div id="nav">
-    123
+    work
   </div>
 </template>
+<script>
+import { Ipc } from '@/electron/ipcRenderer'
+  let data={
+      'a':'index',
+      'b':2
+  }
+Ipc.on('work',(event, arg)=>{
+  console.log(123,event, arg)
+})
 
+setInterval(() => {
+  Ipc.send('index','user',data)
+}, 5 * 1000)// 等待 5 秒后第一次同步数据
+export default {
+  name: 'App',
+  components: {
+  }
+}
+</script>
 <style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
